@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage = "http://symbioticsoftware.com"
   s.license = { :type => "BSD", :file => "LICENSE" }
   s.platform = :ios, "4.3"
-  s.source = { :git => "git@github.com:mvx24/iOS-SSDrawerWindow.git", :tag => "1.0.0" }
+  s.source = { :git => "https://github.com/mvx24/iOS-SSDrawerWindow.git", :tag => "1.0.0" }
   s.source_files = "*.{h,m}"
   s.requires_arc = false
 end
