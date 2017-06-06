@@ -59,12 +59,13 @@
 	CGPoint newpoint;
 	CGFloat move;
 	CGRect frame;
-	
-	_moved = YES;
+
 	if([touch view] == self)
 	{
 		newpoint = [touch locationInView:self];
 		move = newpoint.x - _point.x;
+		if(fabs(move) < 1.0f)
+			return;
 		frame = self.frame;
 		if(frame.origin.x + move < 0.0f)
 			frame.origin.x = 0.0f;
@@ -74,6 +75,7 @@
 			frame.origin.x += move;
 		self.frame = frame;
 		_window.rootViewController.view.frame = frame;
+		_moved = YES;
 	}
 }
 
@@ -376,14 +378,15 @@
 	CGFloat move;
 	CGRect frame;
 
-	_moved = YES;
 	self.highlighted = NO;
 	if([touch view] == self)
 	{
-		// Before any movement can be made, be sure the drawer is loaded
-		[_window loadDrawer];
 		newpoint = [touch locationInView:self];
 		move = newpoint.x - _point.x;
+		if(fabs(move) < 1.0f)
+			return;
+		// Before any movement can be made, be sure the drawer is loaded
+		[_window loadDrawer];
 		frame = _window.rootViewController.view.frame;
 		if(frame.origin.x + move < 0.0f)
 			frame.origin.x = 0.0f;
@@ -392,6 +395,7 @@
 		else
 			frame.origin.x += move;
 		_window.rootViewController.view.frame = frame;
+		_moved = YES;
 	}
 }
 
